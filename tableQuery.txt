@@ -1,0 +1,1 @@
+CREATE TABLE 'esercizi' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'livello' TEXT NOT NULL, 'indice' INTEGER NOT NULL, 'attivita' TEXT NOT NULL, 'descrizione' TEXT NOT NULL, 'ripetizioni' INTEGER NOT NULL, 'durata' INTEGER NOT NULL, 'riposo' INTEGER NOT NULL, 'tipoMedia' TEXT, 'path' TEXT)

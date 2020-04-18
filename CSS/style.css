@@ -1,0 +1,240 @@
+:root {
+    --color1: #f4511e;
+    --color2: #ff844c;
+    --color1-txt: #fafafa;
+    --color2-txt: #666;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color: var(--color2-txt);
+    font-family: sans-serif;
+    user-select: none;
+}
+*:focus{
+    outline: none
+}
+*::-webkit-input-placeholder{
+    color: #888;
+}
+body{
+    position: absolute;
+    display: flex;
+    padding: 50px 0 ;
+    height: calc(100% - 100px);
+    width: 100%;
+    //align-items: center;
+    //justify-content: center;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    background: #fff;
+    box-shadow: 0 0 5px 0px #0006;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 500;
+}
+header a{
+    display: block;
+    margin-right: 20px;
+    height: 44px;
+    border: 0;
+    background: #fff;
+    border-top: 3px solid #fff0;
+    border-bottom: 3px solid #fff;
+    padding: 0 10px;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+header a:last-of-type{
+    margin: 0;
+}
+header a:hover{
+    border-bottom: 3px solid var(--color1);
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background: #fff;
+    z-index: 500;
+}
+.listContainer{
+    position: relative;
+    padding: 30px;
+    box-shadow: 0 2px 5px 0 #0003;
+    border-radius: 10px;
+    transition: all 200ms ease-in-out;
+}
+.listContainer table{
+    position: relative;
+    border-spacing: 10px;
+    max-height: 500px;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.listContainer table tr th, .listContainer table tr td{
+    position: relative;
+    padding: 0 10px;
+    border-radius: 5px;
+    transition: all 150ms ease-in-out;
+    color: var(--color1);
+    background: #f6f6f6;
+    //background: var(--color1);
+    //color: #fff;
+    //font-weight: normal;
+    box-shadow: 0 1px 3px 0 #0002;
+    height: 28px;
+}
+.listContainer table tr td{
+    box-shadow: 0 0 0 0 #0000;
+    color: inherit;
+    background: #f8f8f8;
+    min-width: 35px;
+}
+.listContainer table tr:hover > td{
+    box-shadow: 0 1px 3px 0 #0002;
+}
+.listContainer table tr:last-of-type td/* - .listContainer table tr:last-of-type td:first-of-type*/{
+    padding: 0;
+}
+.listContainer table tr td input, .listContainer table tr td select{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 20px);
+    height: 28px;
+    border: none;
+    padding: 0 10px;
+    background: #0000;
+}
+.listContainer table tr td select{
+    width: 100%
+}
+.listContainer table tr:last-of-type td{
+    height: 0px;
+    overflow: hidden;
+}
+.listContainer table tr #inputId{
+    cursor: default;
+    user-select: none;
+}
+#addRecordBtn{
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: var(--color1);
+    color: var(--color1-txt);
+    box-shadow: 0 2px 5px 0 #0004;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+#addRecordBtn::after, #addRecordBtn::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    transition: all 200ms ease-in-out;
+    background: #fff;
+    border-radius: 2px;
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+#addRecordBtn::before{
+    transform: translate(-50%,-50%) rotate(0deg);
+}
+#addRecordBtn.cross::after{
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+#addRecordBtn.cross::before{
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+#addRecordBtn.check::after{
+    height: 25px;
+    left: 60%;
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+#addRecordBtn.check::before{
+    height: 13px;
+    top: 60%;
+    left: 35%;
+    transform: translate(-50%,-50%) rotate(-40deg);
+}
+
+#flexContainer{
+    position: relative;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+#flexContainer.center{
+    align-items: center;
+}
+.exerciseCard{
+    position: relative;
+    width: 200px;
+    height: 375px;
+    box-shadow: 0 2px 5px 0 #0003;
+    border-radius: 10px;
+    margin: 25px;
+    padding: 25px;
+    overflow: hidden;
+    padding-top: 0;
+}
+.exerciseCard p{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.exerciseCard .keyName{
+    font-weight: bold;
+    margin-right: 10px;
+}
+.exerciseCard p:last-of-type{
+    flex-direction: column;
+}
+.exerciseCard p:last-of-type .value{
+    font-style: italic;
+    padding: 0px 10px;
+}
+.exerciseCard .img{
+    position: relative;
+    height: 100px;
+    width: calc(100% + 50px);
+    left: -25px;
+    top: 0;
+    background: url('https://picsum.photos/300');
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 15px;
+}
