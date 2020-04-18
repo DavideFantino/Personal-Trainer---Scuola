@@ -37,13 +37,13 @@ $(document).ready(function(){
                     lastId++;
                     var xhttp = new XMLHttpRequest();
                     var dati =  "?livello='"+document.getElementById("inputLivello").value
-                                +"'&indice='"+document.getElementById("inputId").value
-                                +"'&attivita='"+document.getElementById("inputAttivita").value
-                                +"'&ripetizioni='"+document.getElementById("inputRipetiz").value
-                                +"'&durata='"+document.getElementById("inputDurata").value
-                                +"'&riposo='"+document.getElementById("inputRiposo").value
-                                +"'&descrizione='"+document.getElementById("inputDesc").value
-                                +"'&path='"+document.getElementById("inputFile").value+"'";
+                    +"'&indice='"+document.getElementById("inputId").value
+                    +"'&attivita='"+document.getElementById("inputAttivita").value
+                    +"'&ripetizioni='"+document.getElementById("inputRipetiz").value
+                    +"'&durata='"+document.getElementById("inputDurata").value
+                    +"'&riposo='"+document.getElementById("inputRiposo").value
+                    +"'&descrizione='"+document.getElementById("inputDesc").value
+                    +"'&path='"+document.getElementById("inputFile").value+"'";
                     xhttp.open("GET", "PHP/aggiungiRecordDB.php"+dati, true);
                     xhttp.send();
 
@@ -65,7 +65,69 @@ $(document).ready(function(){
             $("#addRecordBtn").removeClass("check");
         }
     })
+
+    $("#livello").change(function(){
+        $.ajax({
+            url: 'PHP/recuperaTabellaDB.php',
+            type: 'get',
+            data: {
+                livelloDiff: this.value.toLowerCase()
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                $(".exerciseCard").remove();
+
+                jsonResp = data;
+                for(var ex of jsonResp){
+                    var exerciseCard = document.createElement("div");
+                    var buttonLeft = document.createElement("button");
+                    var buttonRight = document.createElement("button");
+
+                    exerciseCard.setAttribute("exerciseId",ex.id);
+                    exerciseCard.classList.add("exerciseCard");
+                    exerciseCard.innerHTML += "<div class=\"img\"></div>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Attivit&aacute;</span><span class=\"value\">" + toUpperFirstChar(ex.attivita) + "</span></p>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Livello</span><span class=\"value\">" + toUpperFirstChar(ex.livello) + "</span></p>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Indice</span><span class=\"value\">" + ex.indice + "</span></p>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Ripetizioni</span><span class=\"value\">" + ex.ripetizioni + "</span></p>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Durata</span><span class=\"value\">" + ex.durata + " s</span></p>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Riposo</span><span class=\"value\">" + ex.riposo + " s</span></p>";
+                    exerciseCard.innerHTML += "<p><span class=\"keyName\">Descrizione</span><span class=\"value\">" + toUpperFirstChar(ex.descrizione) + "</span></p>";
+
+                    buttonLeft.value = -1;
+                    buttonRight.value = 1;
+                    buttonLeft.classList.add("btnIndice");
+                    buttonLeft.classList.add("left");
+                    buttonRight.classList.add("btnIndice");
+                    buttonRight.classList.add("right");
+
+                    exerciseCard.appendChild(buttonLeft);
+                    exerciseCard.appendChild(buttonRight);
+                    $("#flexContainer")[0].appendChild(exerciseCard);
+                }
+            }
+        });
+    })
+
+    $(".btnIndice").click(function(){
+        $.ajax({
+            url: 'PHP/cambiaIndice.php',
+            type: 'post',
+            data: {
+                id: this.parentNode.getAttribute("exerciseId"),
+                value: this.value
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                console.log(data);
+                location.reload();
+            }
+        });
+    })
+
+
 })
+
 
 function loadTable(jsonResp){
     for(var ex of jsonResp){
@@ -79,7 +141,6 @@ function loadTable(jsonResp){
         tr.innerHTML += "<td>" + ex.riposo + " s</td>";
         tr.innerHTML += "<td>" + toUpperFirstChar(ex.descrizione) + "</td>";
         tr.innerHTML += "<td>" + ex.path + "</td>";
-
         $("tbody")[0].insertBefore(tr,$("tr").last()[0]);
     }
 }

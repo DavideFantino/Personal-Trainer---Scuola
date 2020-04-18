@@ -238,3 +238,55 @@ footer{
     background-size: cover;
     margin-bottom: 15px;
 }
+.btnIndice{
+    position: absolute;
+    top: calc(50% + 00px);
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    opacity: 0.5;
+    background: #ddd0;
+    transition: all 150ms ease-in-out;
+    padding: 0;
+    cursor: pointer;
+}
+.btnIndice:hover{
+    background: #ddd0;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.3);
+}
+.btnIndice.left{
+    left: 0px;
+}
+.btnIndice.right{
+    right: 0px;
+}
+.btnIndice.left::before, .btnIndice.left::after, .btnIndice.right::before, .btnIndice.right::after{
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: 10px;
+    background: var(--color2-txt);
+}
+.btnIndice.left::before{
+    top: 7px;
+    left: 50%;
+    transform: rotate(30deg) translateX(-50%);
+}
+.btnIndice.left::after{
+    bottom: 7px;
+    left: 50%;
+    transform: rotate(-30deg) translateX(-50%);
+}
+.btnIndice.right::before{
+    top: 6px;
+    left: 50%;
+    transform: rotate(-30deg) translateX(-50%);
+}
+.btnIndice.right::after{
+    bottom: 6px;
+    left: 50%;
+    transform: rotate(30deg) translateX(-50%);
+}

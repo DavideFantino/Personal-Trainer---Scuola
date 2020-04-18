@@ -1,5 +1,14 @@
 <?php
-    $query = "SELECT * FROM esercizi ORDER BY indice ASC";
+    $filtro = "";
+
+    if(isset($_GET['livelloDiff']))
+        $filtro = $_GET['livelloDiff'];
+
+    $query = "SELECT * FROM esercizi";
+    if($filtro != "" && $filtro != "tutti"){
+        $query .= " WHERE livello = '$filtro'";
+    }
+    $query .= " ORDER BY indice ASC";
 
     $dbName = "../programmaTrainer.sqlite3";
 

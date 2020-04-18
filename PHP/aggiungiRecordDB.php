@@ -1,10 +1,11 @@
 <?php
 $dbName = "../programmaTrainer.sqlite3";
 
-$servername = gethostname();
 try {
     $db = new PDO("sqlite:$dbName");
-
+} catch (PDOException $e) {
+    echo $e->getMessage();
+} finally {
     $livello = $_GET['livello'];
     $indice =  $_GET['indice'];
     $attivita = $_GET['attivita'];
@@ -23,8 +24,6 @@ try {
     $db->exec('BEGIN');
     $db->exec($QueryTmp);
     $db->exec('COMMIT');
-} catch (PDOException $e) {
-    echo $e->getMessage();
 }
 
 ?>

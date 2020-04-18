@@ -12,6 +12,9 @@
                     jsonResp = JSON.parse(data);
                     for(var ex of jsonResp){
                         var exerciseCard = document.createElement("div");
+                        var buttonLeft = document.createElement("button");
+                        var buttonRight = document.createElement("button");
+
                         exerciseCard.setAttribute("exerciseId",ex.id);
                         exerciseCard.classList.add("exerciseCard");
                         exerciseCard.innerHTML += "<div class=\"img\"></div>";
@@ -22,6 +25,16 @@
                         exerciseCard.innerHTML += "<p><span class=\"keyName\">Durata</span><span class=\"value\">" + ex.durata + " s</span></p>";
                         exerciseCard.innerHTML += "<p><span class=\"keyName\">Riposo</span><span class=\"value\">" + ex.riposo + " s</span></p>";
                         exerciseCard.innerHTML += "<p><span class=\"keyName\">Descrizione</span><span class=\"value\">" + toUpperFirstChar(ex.descrizione) + "</span></p>";
+
+                        buttonLeft.value = -1;
+                        buttonRight.value = 1;
+                        buttonLeft.classList.add("btnIndice");
+                        buttonLeft.classList.add("left");
+                        buttonRight.classList.add("btnIndice");
+                        buttonRight.classList.add("right");
+
+                        exerciseCard.appendChild(buttonLeft);
+                        exerciseCard.appendChild(buttonRight);
                         $("#flexContainer")[0].appendChild(exerciseCard);
                     }
                 }
@@ -42,6 +55,16 @@
                 <p><span class="keyName">Riposo</span><span class="value">30s</span></p>
                 <p><span class="keyName">Descrizione</span><span class="value">Niente di chè, solo molto semplici flessioni</span></p>
             </div>-->
+        </div>
+
+        <div id="sceltaLivello">
+          <label for="sceltalivello">Seleziona livello: </label>
+          <select id="livello" name="livelloDiff">
+            <option value="Tutti" selected>Tutti</option>
+            <option value="Principiante" name="Principiante">Principiante</option>
+            <option value="Intermedio" name="Intermedio">Intermedio</option>
+            <option value="Avanzato" name="Avanzato">Avanzato</option>
+          </select>
         </div>
 
     <?php @require "HTML_Components/footer.html"; ?>
