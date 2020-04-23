@@ -105,29 +105,36 @@ $(document).ready(function(){
                     exerciseCard.appendChild(buttonRight);
                     $("#flexContainer")[0].appendChild(exerciseCard);
                 }
+
+                $(".btnIndice").click(function(){
+                    btnIndiceClick(this);
+                })
             }
         });
     })
 
     $(".btnIndice").click(function(){
-        $.ajax({
-            url: 'PHP/cambiaIndice.php',
-            type: 'post',
-            data: {
-                id: this.parentNode.getAttribute("exerciseId"),
-                value: this.value
-            },
-            dataType: 'JSON',
-            success: function (data) {
-                console.log(data);
-                location.reload();
-            }
-        });
+        btnIndiceClick(this);
     })
 
 
 })
 
+function btnIndiceClick(sender){
+    $.ajax({
+        url: 'PHP/cambiaIndice.php',
+        type: 'post',
+        data: {
+            id: sender.parentNode.getAttribute("exerciseId"),
+            value: sender.value
+        },
+        dataType: 'JSON',
+        success: function (data) {
+            //console.log(data);
+            $("#livello").trigger("change");
+        }
+    });
+}
 
 function loadTable(jsonResp){
     for(var ex of jsonResp){

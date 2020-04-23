@@ -45,6 +45,15 @@
         <?php @require "HTML_Components/header.html"; ?>
 
         <div id="flexContainer">
+            <div id="sceltaLivello">
+                <label for="sceltalivello">Seleziona livello: </label>
+                <select id="livello" name="livelloDiff">
+                    <option value="Tutti" selected>Tutti</option>
+                    <option value="Principiante" name="Principiante">Principiante</option>
+                    <option value="Intermedio" name="Intermedio">Intermedio</option>
+                    <option value="Avanzato" name="Avanzato">Avanzato</option>
+                </select>
+            </div>
             <!--<div class="exerciseCard" execiseId="0">
                 <div class="img"></div>
                 <p><span class="keyName">Livello</span><span class="value">Principiante</span></p>
@@ -57,15 +66,6 @@
             </div>-->
         </div>
 
-        <div id="sceltaLivello">
-          <label for="sceltalivello">Seleziona livello: </label>
-          <select id="livello" name="livelloDiff">
-            <option value="Tutti" selected>Tutti</option>
-            <option value="Principiante" name="Principiante">Principiante</option>
-            <option value="Intermedio" name="Intermedio">Intermedio</option>
-            <option value="Avanzato" name="Avanzato">Avanzato</option>
-          </select>
-        </div>
 
     <?php @require "HTML_Components/footer.html"; ?>
     </body>

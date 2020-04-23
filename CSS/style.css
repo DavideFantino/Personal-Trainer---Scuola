@@ -23,8 +23,9 @@ body{
     display: flex;
     padding: 50px 0 ;
     height: calc(100% - 100px);
+    flex-direction: column;
     width: 100%;
-    //align-items: center;
+    align-items: center;
     //justify-content: center;
 }
 
@@ -117,7 +118,7 @@ footer{
 .listContainer table tr:last-of-type td/* - .listContainer table tr:last-of-type td:first-of-type*/{
     padding: 0;
 }
-.listContainer table tr td input, .listContainer table tr td select{
+.listContainer table tr td input, .listContainer table tr td select, #sceltaLivello select{
     position: absolute;
     top: 0;
     left: 0;
@@ -289,4 +290,25 @@ footer{
     bottom: 6px;
     left: 50%;
     transform: rotate(30deg) translateX(-50%);
+}
+#sceltaLivello{
+    position: fixed;
+    top: 50px;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px 0 #0003;
+    border-radius: 10px;
+    z-index: 10;
+    background: #fff;
+}
+#sceltaLivello select{
+    position: relative;
+    width: 130px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 #0003;
+    color: var(--color1);
+    background: #fff;
 }
