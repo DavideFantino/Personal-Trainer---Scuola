@@ -23,9 +23,9 @@ body{
     display: flex;
     padding: 50px 0 ;
     height: calc(100% - 100px);
-    flex-direction: column;
+    //flex-direction: column;
     width: 100%;
-    align-items: center;
+    //align-items: center;
     //justify-content: center;
 }
 
@@ -197,6 +197,7 @@ footer{
     justify-content: center;
     align-items: flex-start;
     overflow-y: auto;
+    padding-top: 45px;
 }
 #flexContainer.center{
     align-items: center;
@@ -311,4 +312,64 @@ footer{
     box-shadow: 0 1px 2px 0 #0003;
     color: var(--color1);
     background: #fff;
+}
+#clock{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin-top: 25px;
+    box-shadow: 0 3px 13px -5px var(--color2);
+}
+#clock .analog::before, #clock .analog::after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 25px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--color1);
+}
+#clock .analog::before{
+    left: 0px;
+}
+#clock .analog::after{
+    right: 0px;
+}
+#clock .analog{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100px;
+}
+#clock .analog #lancetta{
+    position: absolute;
+    bottom: 0px;
+    width: 100px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--color1);
+    transform: rotate(45deg);
+    transform-origin: right;
+    //animation: clockAnim 3s infinite alternate linear;
+}
+#clock .digital{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 50px;
+}
+#clock .digital #remSecs{
+    color: var(--color2-txt);
+}
+@keyframes clockAnim {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(180deg);
+    }
 }

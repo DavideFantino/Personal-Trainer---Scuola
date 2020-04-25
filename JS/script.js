@@ -71,7 +71,8 @@ $(document).ready(function(){
             url: 'PHP/recuperaTabellaDB.php',
             type: 'get',
             data: {
-                livelloDiff: this.value.toLowerCase()
+                livelloDiff: this.value.toLowerCase(),
+                sort: true
             },
             dataType: 'JSON',
             success: function (data) {
@@ -117,8 +118,124 @@ $(document).ready(function(){
         btnIndiceClick(this);
     })
 
+    /*$("#modificaDati").click(function(){
+
+      var form1 = document.createElement("form");
+      var attivita = document.createElement("textbox");
+      var livello = document.createElement("textbox");
+      var ripetizioni = document.createElement("textbox");
+      var durata = document.createElement("textbox");
+      var riposo = document.createElement("textbox");
+      var descrizione = document.createElement("textbox");
+
+      var salvaDati = document.createElement("button");
+      salvaDati.setAttribute("id","salvaDati");
+
+    });*/
+
+    /*$("#salvaDati").click(function(){
+        var elenco;
+        $.ajax({
+            url: 'PHP/modificaDati.php',
+            type: 'POST',
+            data: {
+                livelloDiff: $("#livelloAllenamento").val().toLowerCase(),
+
+
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                elenco = data;
+
+                var esIndice = 0;
+
+                //esercizio(elenco, esIndice);
+
+            }
+        });
+    })*/
+
+    $("#livelloAllenamento").change(function(){
+        $.ajax({
+            url: 'PHP/recuperaTabellaDB.php',
+            type: 'get',
+            data: {
+                livelloDiff: this.value.toLowerCase(),
+                sort: true
+            },
+            dataType: 'JSON',
+            success: function (data) {
+
+            }
+        });
+    })
+
+    $("#btnInizia").click(function(){
+        var elenco;
+        $.ajax({
+            url: 'PHP/recuperaTabellaDB.php',
+            type: 'get',
+            data: {
+                livelloDiff: $("#livelloAllenamento").val().toLowerCase(),
+                sort: true
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                elenco = data;
+
+                var esIndice = 0;
+
+                esercizio(elenco, esIndice);
+
+            }
+        });
+    })
 
 })
+
+function esercizio(elenco, indice){
+    var attesa = 0;
+    var durataEs = parseInt(elenco[indice].durata);
+    var riposoEs = parseInt(elenco[indice].riposo);
+
+    console.log("Id: " + elenco[indice].id + "\nIndice: " + elenco[indice].indice + "\nAttività: " + elenco[indice].attivita);
+
+    setTimeout(function(){
+        attesa = durataEs;
+        $("#remSecs").html(durataEs);
+
+        var exit = false;
+        var intervalTime = 0;
+        var int = setInterval(function(){
+            intervalTime += 10;
+
+            if(!exit){
+                $("#clock .analog #lancetta").css("transform","rotate(" + ((intervalTime*180)/(attesa*1000)) + "deg)");
+            }else {
+                $("#clock .analog #lancetta").css("transform","rotate(" + (180-((intervalTime*180)/(attesa*1000))) + "deg)");
+            }
+
+            if(intervalTime%1000 == 0){
+                var sec = parseInt($("#remSecs").html()) - 1;
+                $("#remSecs").html(sec);
+                if(sec == 0){
+                    if(exit){
+                        if(indice < elenco.length-1){
+                            esercizio(elenco, ++indice);
+                        }
+                        clearInterval(int);
+                    }else{
+                        attesa = riposoEs;
+                        intervalTime = 0;
+                        //$("#clock .analog #lancetta").css("animation","clockAnim " + riposoEs + "s reverse infinite linear");
+                        $("#remSecs").html(riposoEs);
+                        exit = true;
+                    }
+                }
+            }
+        },10);
+    },attesa)
+}
 
 function btnIndiceClick(sender){
     $.ajax({

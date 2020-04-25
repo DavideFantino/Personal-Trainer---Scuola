@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
     <head>
-        <?php @require "HTML_Components/head.html"; ?>
+        <?php @require "HTML_Components/head.php"; ?>
         <title>Programma Personal Trainer</title>
         <script type="text/javascript">
             getTableJSON();

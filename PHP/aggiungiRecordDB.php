@@ -1,5 +1,5 @@
 <?php
-$dbName = "../programmaTrainer.sqlite3";
+$dbName = "../DB/programmaTrainer.sqlite3";
 
 try {
     $db = new PDO("sqlite:$dbName");

@@ -8,9 +8,10 @@
     if($filtro != "" && $filtro != "tutti"){
         $query .= " WHERE livello = '$filtro'";
     }
-    $query .= " ORDER BY indice ASC";
+    if(isset($_GET['sort']))
+        $query .= " ORDER BY indice ASC";
 
-    $dbName = "../programmaTrainer.sqlite3";
+    $dbName = "../DB/programmaTrainer.sqlite3";
 
     $db;
     try {

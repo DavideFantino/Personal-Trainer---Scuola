@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
     <head>
-        <?php @require "HTML_Components/head.html"; ?>
+        <?php @require "HTML_Components/head.php"; ?>
         <title>Programma Personal Trainer</title>
         <script type="text/javascript">
             var jsonResp;
             $.ajax({
                 url: 'PHP/recuperaTabellaDB.php',
-                type: 'post',
+                type: 'get',
+                dataType: "JSON",
+                data: {
+                    sort: true
+                },
                 success: function (data) {
-                    jsonResp = JSON.parse(data);
+                    jsonResp = data;
                     for(var ex of jsonResp){
                         var exerciseCard = document.createElement("div");
                         var buttonLeft = document.createElement("button");
@@ -25,6 +29,8 @@
                         exerciseCard.innerHTML += "<p><span class=\"keyName\">Durata</span><span class=\"value\">" + ex.durata + " s</span></p>";
                         exerciseCard.innerHTML += "<p><span class=\"keyName\">Riposo</span><span class=\"value\">" + ex.riposo + " s</span></p>";
                         exerciseCard.innerHTML += "<p><span class=\"keyName\">Descrizione</span><span class=\"value\">" + toUpperFirstChar(ex.descrizione) + "</span></p>";
+
+                        //exerciseCard.innerHTML += "<button id=\"modificaDati\">Modifica</button>";
 
                         buttonLeft.value = -1;
                         buttonRight.value = 1;
