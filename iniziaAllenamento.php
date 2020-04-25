@@ -23,7 +23,7 @@
             <input type="button" id="btnInizia" value="INIZIA">
 
 
-              <div id="clock">
+              <div id="clock" hidden>
                   <div class="analog">
                       <div id="lancetta"></div>
                   </div>

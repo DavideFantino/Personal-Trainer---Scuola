@@ -185,7 +185,11 @@ $(document).ready(function(){
 
                 var esIndice = 0;
 
-                esercizio(elenco, esIndice);
+                setTimeout(function(){
+                    esercizio(elenco, esIndice);
+                    $("#btnInizia")[0].hidden = true;
+                    $("#clock")[0].hidden = false;
+                },400);
 
             }
         });

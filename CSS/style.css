@@ -11,6 +11,7 @@
     color: var(--color2-txt);
     font-family: sans-serif;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 *:focus{
     outline: none
@@ -313,13 +314,16 @@ footer{
     color: var(--color1);
     background: #fff;
 }
-#clock{
+#clock, #btnInizia{
     position: relative;
     width: 200px;
     height: 200px;
     border-radius: 100px;
     margin-top: 25px;
     box-shadow: 0 3px 13px -5px var(--color2);
+    border: none;
+    background: #fff;
+    font-size: 50px;
 }
 #clock .analog::before, #clock .analog::after{
     content: "";
@@ -372,4 +376,14 @@ footer{
     100%{
         transform: rotate(180deg);
     }
+}
+#btnInizia{
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+#btnInizia:hover{
+    transform: scale(1.05);
+}
+#btnInizia:active{
+    transform: scale(0.95);
 }
